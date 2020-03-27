@@ -15,6 +15,7 @@ after installing your postgres, change the following to enable terminal authenti
     # save and exit
 
 when you done changing this file go to home directory do the following
+
     1- create a new file
 
         $ nano ~/.pgpass
