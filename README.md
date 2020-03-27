@@ -8,5 +8,7 @@ fork it or push your configuration.md file and share the knowledge .
 # 💻 🎉
 
 Twitter [majidcj](https://twitter.com/majidcj)
+
 Facebook [Majid S CJ](https://www.facebook.com/majid.weezy)
+
 Gitlab [majid-cj](https://gitlab.com/majid-cj)

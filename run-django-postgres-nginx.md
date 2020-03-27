@@ -9,10 +9,8 @@ Step 2 — Creating a New User
     $ adduser <new_user_name>
 
     #-------------------------------------------------------
-    <strong>You will be asked a few questions, starting with the account password</strong>
-    <strong>Enter a strong password and, optionally, fill in any of the additional
-            information if you would like. This is not required and you can just
-            hit ENTER in any field you wish to skip.</strong>
+<strong>You will be asked a few questions, starting with the account password</strong>
+<strong>Enter a strong password and, optionally, fill in any of the additional information if you would like. This is not required and you can just hit ENTER in any field you wish to skip.</strong>
 
 Step 3 — Granting Administrative Privileges
     $ usermod -aG sudo <new_user_name>
@@ -26,33 +24,44 @@ Step 3 — Granting Administrative Privileges
 <strong>using Django with Python 3, type:</strong>
 
     $ sudo apt update
+
     $ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 
 <strong>using Django with Python 2, type:</strong>
     $ sudo apt update
+
     $ sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
 
 <strong> Creating the PostgreSQL Database and User </strong>
     $ sudo -u postgres psql
-    <strong>following commands in postgres termianl</strong>
+<strong>following commands in postgres termianl</strong>
     postgres=# CREATE USER <db_user_name> WITH PASSWORD 'password';
+
     postgres=# CREATE DATABASE <db_name>;
+
     postgres=# ALTER ROLE <db_user_name> SET client_encoding TO 'utf8';
+
     postgres=# ALTER ROLE <db_user_name> SET default_transaction_isolation TO 'read committed';
+
     postgres=# ALTER ROLE <db_user_name> SET timezone TO 'UTC';
+
     postgres=# GRANT ALL PRIVILEGES ON DATABASE <db_name> TO <db_user_name>;
+
     postgres=# \q;
 
 # Creating a Python Virtual Environment for your Project
 
 <strong> for python 3 <strong>
+
     $ sudo -H pip3 install --upgrade pip
     $ sudo -H pip3 install virtualenv
 
 
 <strong> for python 2 <strong>
+
     $ sudo -H pip install --upgrade pip
     $ sudo -H pip install virtualenv
+
 
 With virtualenv installed, we can start forming our project. Create and move
 into a directory where we can keep our project files:
@@ -88,21 +97,31 @@ so when ever you want to make changes, just make pull to your repo)
 
 after install your requirements, do the following commands
 but before that make sure than your setting file is compatible with your server
+
     eg : database password and user name
 
 then execute the following :
+
     (<project_virtual_env_name>)$ python manage.py makemigrations
+
     (<project_virtual_env_name>)$ python manage.py migrate
+
     (<project_virtual_env_name>)$ python manage.py createsuperuser
+
     # if needed create a super user
+
     (<project_virtual_env_name>)$ python manage.py collectstatic
+
     (<project_virtual_env_name>)$ sudo ufw allow 8000
+
     # or the port you will run your server on it
+
     (<project_virtual_env_name>)$ python manage.py runserver 0.0.0.0:8000
 
 then go to your brower and check if it's live and runnung
 
      (<project_virtual_env_name>)$ gunicorn --bind 0.0.0.0:8000 <your_project_name>.wsgi
+     
      (<project_virtual_env_name>)$ deactivate
 
 Service Files for Gunicorn
