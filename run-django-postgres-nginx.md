@@ -3,16 +3,19 @@
 # 1 initial server setup guide.
 
 Step 1 — Logging in as Root
+
     <strong>$ ssh root@your_server_ip</strong>
 
 Step 2 — Creating a New User
+
     $ adduser <new_user_name>
 
-    #-------------------------------------------------------
+
 <strong>You will be asked a few questions, starting with the account password</strong>
 <strong>Enter a strong password and, optionally, fill in any of the additional information if you would like. This is not required and you can just hit ENTER in any field you wish to skip.</strong>
 
 Step 3 — Granting Administrative Privileges
+
     $ usermod -aG sudo <new_user_name>
 
 # dont foreget to do the following steps with the new user you created
@@ -28,13 +31,17 @@ Step 3 — Granting Administrative Privileges
     $ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 
 <strong>using Django with Python 2, type:</strong>
+
     $ sudo apt update
 
     $ sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
 
 <strong> Creating the PostgreSQL Database and User </strong>
+
     $ sudo -u postgres psql
+
 <strong>following commands in postgres termianl</strong>
+
     postgres=# CREATE USER <db_user_name> WITH PASSWORD 'password';
 
     postgres=# CREATE DATABASE <db_name>;
@@ -121,16 +128,18 @@ then execute the following :
 then go to your brower and check if it's live and runnung
 
      (<project_virtual_env_name>)$ gunicorn --bind 0.0.0.0:8000 <your_project_name>.wsgi
-     
+
      (<project_virtual_env_name>)$ deactivate
 
 Service Files for Gunicorn
 
     $ sudo nano /etc/systemd/system/gunicorn.service
 
-    # i used to do it without creating .sock file
-    # and let the system create
-    ps : you can create let the path of .sock file anywhere
+i used to do it without creating .sock file and let the system create
+
+<strong>ps</strong> :
+    you can create the path of .sock file anywhere
+
 
     [Unit]
     Description=gunicorn daemon
@@ -151,6 +160,9 @@ Service Files for Gunicorn
 
     # save and exit
 
+
+execute these commands after :
+
     $ sudo systemctl daemon-reload
     $ sudo systemctl start gunicorn
     $ sudo systemctl enable gunicorn
@@ -160,6 +172,7 @@ Service Files for Gunicorn
 Configure Nginx to Proxy Pass to Gunicorn
 
     $ sudo nano /etc/nginx/sites-available/<any_name_could_be_fine_or_your project_name>
+
 
     server {
         listen 80;
@@ -182,9 +195,13 @@ Configure Nginx to Proxy Pass to Gunicorn
         }
     }
 
-    # save and exit
+    #save and exit
+
+
+then creat a hard link between available site and enabled sites
 
     $ sudo ln -s /etc/nginx/sites-available/<any_name_could_be_fine_or_your project_name> /etc/nginx/sites-enabled
+
 
     $ sudo rm /etc/nginx/sites-enabled/default
     $ sudo nginx -t
@@ -202,14 +219,16 @@ Configure Nginx to Proxy Pass to Gunicorn
     $ sudo apt-get install python-certbot-nginx
     $ sudo certbot --nginx
 
-    # very simple installation instruction just follow it and see what suite your needs
+very simple installation instruction just follow it and see what suite your needs
 
 Setup the auto renew of the certs. Run the command below to edit the crontab file:
+
     $ sudo crontab -e
-    # choose your preferred editor and hit Enter and past the following
+
+choose your preferred editor and hit Enter and past the following at the bottom of the file
 
     0 4 * * * /usr/bin/certbot renew --dry-run
 
-    #save and exit
+    # save and exit
 
 # and by reaching this phase your web application is ready to run 🚀 with SSL Certification 🔐

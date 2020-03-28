@@ -7,11 +7,17 @@ after installing your postgres, change the following to enable terminal authenti
     # scroll down the file until you find this commented line
     <# Database administrative login by Unix domain socket>
     and below it you will find something like this
+
     local   all             postgres                                peer
+
     comment this line of your working database is named postgres else
     let this line and write below it
+
     local   all             <your_db_name>                           md5
-    # make sure to align them
+
+
+# make sure to align them
+
     # save and exit
 
 when you done changing this file go to home directory do the following
