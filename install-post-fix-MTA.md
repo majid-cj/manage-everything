@@ -14,7 +14,7 @@
     $ Force synchronous updates on mail queue => No
     $ Local networks => The default should work for most scenarios
     $ Mailbox size limit => set it to 0 , it disables any size restriction
-    $ Local address extension character => ** + **
+    $ Local address extension character => +
     $ Internet protocols to use => all
 
 **now your postfix is installed and it will show your configurations**
@@ -63,7 +63,7 @@
 
     $ sudo nano /etc/s-nail.rc
 
-    **append the following lines at the bottom of this files**
+**append the following lines at the bottom of this files**
 
     . . .
     set emptystart
@@ -74,7 +74,7 @@
 
     $ echo 'init' | s-nail -s 'init' -Snorecord <linux_user_name_but_not_root>
 
-    **check to make sure the directory was created by looking for our ~/Maildir directory:**
+**check to make sure the directory was created by looking for our ~/Maildir directory:**
 
     $ ls -R ~/Maildir
 
@@ -109,4 +109,3 @@
 
     $ $ cat "message body" | s-nail -s "message subject" -r info@your-domain.com mail1@mail.com, mail2@mail.com
 
-    
