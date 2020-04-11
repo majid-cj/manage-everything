@@ -12,3 +12,5 @@ Twitter [majidcj](https://twitter.com/majidcj)
 Facebook [Majid S CJ](https://www.facebook.com/majid.weezy)
 
 Gitlab [majid-cj](https://gitlab.com/majid-cj)
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T8H6DV)
