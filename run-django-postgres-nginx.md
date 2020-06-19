@@ -176,11 +176,12 @@ Configure Nginx to Proxy Pass to Gunicorn
 
     server {
         listen 80;
-        server_name www.you-domain.com, *.you-domain.com;
-        keepalive_timeout 5;
-        client_max_body_size 4G;
+        server_name www.your-domain.com *.your-domain.com your-domain.com;
+        keepalive_timeout <any numric value>;
+        client_max_body_size <numric size><G, M 'size in giga or mega bytes'>;
 
         location = /favicon.ico { access_log off; log_not_found off; }
+        
         location /static/ {
             root /home/<new_user_name>/<project dir name>;
         }
